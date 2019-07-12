@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.ui.activities
+package com.aranirahan.moviecatalogue.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.aranirahan.moviecatalogue.R
-import com.aranirahan.moviecatalogue.ui.fragments.MovieFragment
-import com.aranirahan.moviecatalogue.ui.fragments.TvShowFragment
+import com.aranirahan.moviecatalogue.ui.movie.MovieFragment
+import com.aranirahan.moviecatalogue.ui.tvshow.TvShowFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

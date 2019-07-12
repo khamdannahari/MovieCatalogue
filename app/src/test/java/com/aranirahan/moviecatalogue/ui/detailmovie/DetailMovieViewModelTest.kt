@@ -1,9 +1,10 @@
-package com.aranirahan.moviecatalogue.viewmodel
+package com.aranirahan.moviecatalogue.ui.detailmovie
 
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.model.Movie
 import org.junit.After
 import org.junit.Assert
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
@@ -33,11 +34,11 @@ class DetailMovieViewModelTest{
 
     @Test
     fun detailMovie() {
-        Assert.assertEquals(movie?.id, vmDetailMovie?.detailMovie(1)?.id)
-        Assert.assertEquals(movie?.title, vmDetailMovie?.detailMovie(1)?.title)
-        Assert.assertEquals(movie?.director, vmDetailMovie?.detailMovie(1)?.director)
-        Assert.assertEquals(movie?.description, vmDetailMovie?.detailMovie(1)?.description)
-        Assert.assertEquals(movie?.image, vmDetailMovie?.detailMovie(1)?.image)
-        Assert.assertEquals(movie?.date, vmDetailMovie?.detailMovie(1)?.date)
+        assertEquals(movie?.id, vmDetailMovie?.detailMovie(1)?.id)
+        assertEquals(movie?.title, vmDetailMovie?.detailMovie(1)?.title)
+        assertEquals(movie?.director, vmDetailMovie?.detailMovie(1)?.director)
+        assertEquals(movie?.description, vmDetailMovie?.detailMovie(1)?.description)
+        assertEquals(movie?.image, vmDetailMovie?.detailMovie(1)?.image)
+        assertEquals(movie?.date, vmDetailMovie?.detailMovie(1)?.date)
     }
 }

@@ -9,15 +9,15 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.activities.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.DetailMovieActivity"/>
-        <activity android:name=".ui.activities.DetailTvShowActivity"/>
+        <activity android:name=".ui.detailmovie.DetailMovieActivity"/>
+        <activity android:name=".ui.detailtvshow.DetailTvShowActivity"/>
     </application>
 
 </manifest>

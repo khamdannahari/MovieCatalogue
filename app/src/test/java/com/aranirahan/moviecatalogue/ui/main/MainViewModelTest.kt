@@ -1,9 +1,10 @@
-package com.aranirahan.moviecatalogue.viewmodel
+package com.aranirahan.moviecatalogue.ui.main
 
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
+
 
 class MainViewModelTest{
     private var vmMain: MainViewModel? = null

@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.ui.adapters
+package com.aranirahan.moviecatalogue.ui.tvshow
 
 
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aranirahan.moviecatalogue.R
-import com.aranirahan.moviecatalogue.model.Movie
 import com.aranirahan.moviecatalogue.model.TvShow
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.content_tv_show.view.*

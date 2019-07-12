@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.viewmodel
+package com.aranirahan.moviecatalogue.ui.detailmovie
 
 import androidx.lifecycle.ViewModel
 import com.aranirahan.moviecatalogue.data.DataDummy

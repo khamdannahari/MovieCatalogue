@@ -1,9 +1,10 @@
-package com.aranirahan.moviecatalogue.viewmodel
+package com.aranirahan.moviecatalogue.ui.detailtvshow
 
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.model.TvShow
 import org.junit.After
 import org.junit.Assert
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
@@ -32,10 +33,10 @@ class DetailTvShowViewModelTest{
 
     @Test
     fun detailTvShow() {
-        Assert.assertEquals(tvShow?.id, vmTvShow?.detailTvShow(1)?.id)
-        Assert.assertEquals(tvShow?.title, vmTvShow?.detailTvShow(1)?.title)
-        Assert.assertEquals(tvShow?.description, vmTvShow?.detailTvShow(1)?.description)
-        Assert.assertEquals(tvShow?.image, vmTvShow?.detailTvShow(1)?.image)
-        Assert.assertEquals(tvShow?.date, vmTvShow?.detailTvShow(1)?.date)
+        assertEquals(tvShow?.id, vmTvShow?.detailTvShow(1)?.id)
+        assertEquals(tvShow?.title, vmTvShow?.detailTvShow(1)?.title)
+        assertEquals(tvShow?.description, vmTvShow?.detailTvShow(1)?.description)
+        assertEquals(tvShow?.image, vmTvShow?.detailTvShow(1)?.image)
+        assertEquals(tvShow?.date, vmTvShow?.detailTvShow(1)?.date)
     }
 }

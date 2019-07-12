@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.ui.activities
+package com.aranirahan.moviecatalogue.ui.detailmovie
 
 
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.model.Movie
-import com.aranirahan.moviecatalogue.viewmodel.DetailMovieViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_movie.*
 

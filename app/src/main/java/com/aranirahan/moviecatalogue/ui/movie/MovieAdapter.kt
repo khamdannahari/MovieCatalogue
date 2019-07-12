@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.ui.adapters
+package com.aranirahan.moviecatalogue.ui.movie
 
 
 import android.view.LayoutInflater

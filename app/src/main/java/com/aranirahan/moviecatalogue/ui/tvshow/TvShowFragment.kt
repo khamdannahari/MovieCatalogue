@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.ui.fragments
+package com.aranirahan.moviecatalogue.ui.tvshow
 
 
 import android.os.Bundle
@@ -9,35 +9,34 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aranirahan.moviecatalogue.R
-import com.aranirahan.moviecatalogue.model.Movie
-import com.aranirahan.moviecatalogue.ui.activities.DetailMovieActivity
-import com.aranirahan.moviecatalogue.ui.activities.DetailMovieActivity.Companion.ID_MOVIE
-import com.aranirahan.moviecatalogue.ui.adapters.MovieAdapter
-import com.aranirahan.moviecatalogue.viewmodel.MainViewModel
-import kotlinx.android.synthetic.main.fragment_movie.*
+import com.aranirahan.moviecatalogue.model.TvShow
+import com.aranirahan.moviecatalogue.ui.detailtvshow.DetailTvShowActivity
+import com.aranirahan.moviecatalogue.ui.detailtvshow.DetailTvShowActivity.Companion.ID_TV_SHOW
+import com.aranirahan.moviecatalogue.ui.main.MainViewModel
+import kotlinx.android.synthetic.main.fragment_tv_show.*
 import org.jetbrains.anko.startActivity
 
 
-class MovieFragment : Fragment() {
+class TvShowFragment : Fragment() {
 
-    private var data = listOf<Movie>()
+    private var data = listOf<TvShow>()
     private val vmMain by lazy {
         ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_movie, container, false)
+        return inflater.inflate(R.layout.fragment_tv_show, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        data = vmMain.movies
+        data = vmMain.tvShows
 
-        rv_movie.apply {
+        rv_tv_show.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = MovieAdapter(data) { idMovie ->
-                context?.startActivity<DetailMovieActivity>(ID_MOVIE to idMovie)
+            adapter = TvShowAdapter(data) { idMovie ->
+                context?.startActivity<DetailTvShowActivity>(ID_TV_SHOW to idMovie)
             }
         }
     }
