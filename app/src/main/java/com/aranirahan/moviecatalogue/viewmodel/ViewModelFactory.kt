@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.aranirahan.moviecatalogue.data.source.DataRepository
 import com.aranirahan.moviecatalogue.di.Injection
+import com.aranirahan.moviecatalogue.ui.detailmovie.DetailMovieViewModel
+import com.aranirahan.moviecatalogue.ui.detailtvshow.DetailTvShowViewModel
 import com.aranirahan.moviecatalogue.ui.main.MainViewModel
 
 
@@ -16,6 +18,8 @@ class ViewModelFactory private constructor(private val mDataRepository: DataRepo
 
         return when {
             modelClass.isAssignableFrom(MainViewModel::class.java) -> MainViewModel(mDataRepository) as T
+            modelClass.isAssignableFrom(DetailMovieViewModel::class.java) -> DetailMovieViewModel(mDataRepository) as T
+            modelClass.isAssignableFrom(DetailTvShowViewModel::class.java) -> DetailTvShowViewModel(mDataRepository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
 

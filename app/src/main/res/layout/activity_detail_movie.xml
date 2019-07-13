@@ -44,4 +44,13 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_title_detail_movie"
         tools:text="Desc "/>
 
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

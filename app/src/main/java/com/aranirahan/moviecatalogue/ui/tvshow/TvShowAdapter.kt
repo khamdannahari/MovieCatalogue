@@ -6,14 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aranirahan.moviecatalogue.R
+import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.content_tv_show.view.*
 
 
-class TvShowAdapter(private val tvShow: List<TvShow>,
-                    private val clickListener: (Int) -> Unit)
+class TvShowAdapter(private val clickListener: (Int) -> Unit)
     : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
+
+    private var tvShow: List<TvShow> = emptyList()
+
+    fun submitList(tvShow: List<TvShow>) {
+        this.tvShow = tvShow
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context)

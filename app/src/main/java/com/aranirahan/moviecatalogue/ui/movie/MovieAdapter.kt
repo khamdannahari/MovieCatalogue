@@ -11,9 +11,15 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.content_movie.view.*
 
 
-class MovieAdapter(private val movies: List<Movie>,
-                   private val clickListener: (Int) -> Unit)
+class MovieAdapter(private val clickListener: (Int) -> Unit)
     : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+
+    private var movies: List<Movie> = emptyList()
+
+    fun submitList(movies: List<Movie>) {
+        this.movies = movies
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context)

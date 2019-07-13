@@ -4,9 +4,11 @@ package com.aranirahan.moviecatalogue.ui.detailmovie
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
+import com.aranirahan.moviecatalogue.goGone
 import com.aranirahan.moviecatalogue.viewmodel.ViewModelFactory
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_movie.*
@@ -21,7 +23,11 @@ class DetailMovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_movie)
 
-        initView(vmDetailMovie.detailMovie(idMovie))
+        vmDetailMovie.detailMovie(idMovie).observe(this, Observer {
+            progress_circular.goGone()
+            initView(it)
+        })
+
     }
 
     private fun initView(movie: Movie?) {
