@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.aranirahan.moviecatalogue.R
-import com.aranirahan.moviecatalogue.model.TvShow
+import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_movie.*
 
@@ -24,7 +24,7 @@ class DetailTvShowActivity : AppCompatActivity() {
         initView(vmDetailTvShow.detailTvShow(idTvShow))
     }
 
-    private fun initView(tvShow:TvShow?) {
+    private fun initView(tvShow: TvShow?) {
         tvShow?.image?.let { Picasso.get().load(it).into(iv_detail_movie) }
         tv_title_detail_movie.text = tvShow?.title
         tv_desc_detail_movie.text = tvShow?.description

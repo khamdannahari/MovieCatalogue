@@ -1,13 +1,13 @@
 package com.aranirahan.moviecatalogue.ui.main
 
 import androidx.lifecycle.ViewModel
-import com.aranirahan.moviecatalogue.data.DataDummy
-import com.aranirahan.moviecatalogue.model.Movie
-import com.aranirahan.moviecatalogue.model.TvShow
+import com.aranirahan.moviecatalogue.data.source.DataRepository
+import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
+import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 
-class MainViewModel : ViewModel() {
+class MainViewModel(dataRepository: DataRepository) : ViewModel() {
 
-    val movies : List<Movie> = DataDummy.generateDummyMovies()
-    val tvShows : List<TvShow> = DataDummy.generateDummyTvShow()
+    val movies: List<Movie> = dataRepository.getMovies()
+    val tvShows: List<TvShow> = dataRepository.getTvShows()
 
 }

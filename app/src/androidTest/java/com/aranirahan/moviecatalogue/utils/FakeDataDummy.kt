@@ -1,8 +1,8 @@
 package com.aranirahan.moviecatalogue.utils
 
 import com.aranirahan.moviecatalogue.R
-import com.aranirahan.moviecatalogue.model.Movie
-import com.aranirahan.moviecatalogue.model.TvShow
+import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
+import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 
 
 object FakeDataDummy {
@@ -289,14 +289,6 @@ object FakeDataDummy {
                 R.drawable.poster_the_umbrella,
                 "17 Agustus 1945",
                 "9.5"
-            ),
-            TvShow(
-                17,
-                "The Walking Dead",
-                "Sheriff's deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.",
-                R.drawable.poster_the_walking_dead,
-                "2010",
-                "73"
             )
         )
     }

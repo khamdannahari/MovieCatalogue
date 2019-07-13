@@ -32,6 +32,6 @@ class TvShowFragmentTest{
     @Test
     fun getData() {
         onView(withId(R.id.rv_tv_show)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(withId(R.id.rv_tv_show)).check(RecyclerViewItemCountAssertion(17))
+        onView(withId(R.id.rv_tv_show)).check(RecyclerViewItemCountAssertion(16))
     }
 }

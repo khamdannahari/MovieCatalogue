@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.model
+package com.aranirahan.moviecatalogue.data.source.locale.entity
 
 import com.aranirahan.moviecatalogue.R
 

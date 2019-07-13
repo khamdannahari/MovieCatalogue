@@ -1,22 +1,27 @@
 package com.aranirahan.moviecatalogue.ui.detailtvshow
 
 import com.aranirahan.moviecatalogue.R
-import com.aranirahan.moviecatalogue.model.TvShow
+import com.aranirahan.moviecatalogue.data.source.DataRepository
+import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
+import com.aranirahan.moviecatalogue.ui.main.utils.FakeDataDummy
 import org.junit.After
-import org.junit.Assert
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mockito
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 
 
 class DetailTvShowViewModelTest{
 
     private var vmTvShow: DetailTvShowViewModel? = null
-    private var tvShow: TvShow? = null
+    private lateinit var tvShow: TvShow
+    private val dataRepository = mock(DataRepository::class.java)
 
     @Before
     fun setUp() {
-        vmTvShow = DetailTvShowViewModel()
+        vmTvShow = DetailTvShowViewModel(dataRepository)
         tvShow = TvShow(
             1,
             "Arrow",
@@ -33,10 +38,11 @@ class DetailTvShowViewModelTest{
 
     @Test
     fun detailTvShow() {
-        assertEquals(tvShow?.id, vmTvShow?.detailTvShow(1)?.id)
-        assertEquals(tvShow?.title, vmTvShow?.detailTvShow(1)?.title)
-        assertEquals(tvShow?.description, vmTvShow?.detailTvShow(1)?.description)
-        assertEquals(tvShow?.image, vmTvShow?.detailTvShow(1)?.image)
-        assertEquals(tvShow?.date, vmTvShow?.detailTvShow(1)?.date)
+        `when`(dataRepository.getTvShow(tvShow.id)).thenReturn(FakeDataDummy.getTvShowById(tvShow.id))
+        assertEquals(tvShow.id, vmTvShow?.detailTvShow(1)?.id)
+        assertEquals(tvShow.title, vmTvShow?.detailTvShow(1)?.title)
+        assertEquals(tvShow.description, vmTvShow?.detailTvShow(1)?.description)
+        assertEquals(tvShow.image, vmTvShow?.detailTvShow(1)?.image)
+        assertEquals(tvShow.date, vmTvShow?.detailTvShow(1)?.date)
     }
 }

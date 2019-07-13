@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aranirahan.moviecatalogue.R
-import com.aranirahan.moviecatalogue.model.Movie
+import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.content_movie.view.*
 
