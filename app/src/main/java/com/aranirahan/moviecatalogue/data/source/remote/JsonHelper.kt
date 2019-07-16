@@ -1,15 +1,13 @@
 package com.aranirahan.moviecatalogue.data.source.remote
 
+
 import android.app.Application
 import com.aranirahan.moviecatalogue.data.source.remote.response.MovieResponse
 import com.aranirahan.moviecatalogue.data.source.remote.response.TvShowResponse
-
-
 import org.json.JSONException
 import org.json.JSONObject
-
 import java.io.IOException
-import java.util.ArrayList
+import java.util.*
 
 class JsonHelper(private val application: Application) {
 

@@ -8,7 +8,7 @@ import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 import com.aranirahan.moviecatalogue.data.source.remote.RemoteRepository
 import com.aranirahan.moviecatalogue.data.source.remote.response.MovieResponse
 import com.aranirahan.moviecatalogue.data.source.remote.response.TvShowResponse
-import java.util.ArrayList
+import java.util.*
 
 
 open class FakeDataRepository(

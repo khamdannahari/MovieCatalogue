@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
-import com.aranirahan.moviecatalogue.goGone
+import com.aranirahan.moviecatalogue.utils.goGone
 import com.aranirahan.moviecatalogue.viewmodel.ViewModelFactory
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_movie.*

@@ -6,19 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aranirahan.moviecatalogue.R
+import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.ui.detailmovie.DetailMovieActivity
 import com.aranirahan.moviecatalogue.ui.detailmovie.DetailMovieActivity.Companion.ID_MOVIE
 import com.aranirahan.moviecatalogue.ui.main.MainViewModel
+import com.aranirahan.moviecatalogue.utils.goGone
+import com.aranirahan.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_movie.*
 import org.jetbrains.anko.startActivity
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.Observer
-import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
-import com.aranirahan.moviecatalogue.goGone
-import com.aranirahan.moviecatalogue.viewmodel.ViewModelFactory
 
 
 class MovieFragment : Fragment() {

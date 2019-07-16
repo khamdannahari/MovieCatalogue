@@ -1,18 +1,17 @@
 package com.aranirahan.moviecatalogue.ui.main
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.aranirahan.moviecatalogue.data.source.DataRepository
+import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
+import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 import com.aranirahan.moviecatalogue.ui.main.utils.FakeDataDummy
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.*
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import org.junit.Rule
-import org.mockito.Mockito.`when`
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
-import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 
 
 class MainViewModelTest{
@@ -35,11 +34,6 @@ class MainViewModelTest{
 
     @Test
     fun movies() {
-//        `when`(dataRepository.getMovies()).thenReturn(FakeDataDummy.generateDummyMovies())
-//        val movies = vmMain?.movies
-//        verify(dataRepository).getMovies()
-//        assertNotNull(movies)
-//        assertEquals(16, dataRepository.getMovies().size)
 
         val moviesMutable = MutableLiveData<List<Movie>>()
         moviesMutable.value = FakeDataDummy.generateDummyMovies()
@@ -52,11 +46,6 @@ class MainViewModelTest{
 
     @Test
     fun tvShows() {
-//        `when`(dataRepository.getTvShows()).thenReturn(FakeDataDummy.generateDummyTvShows())
-//        val tvShow = vmMain?.tvShows
-//        verify(dataRepository).getTvShows()
-//        assertNotNull(tvShow)
-//        assertEquals(16, dataRepository.getTvShows().size)
 
         val tvShowsMutable = MutableLiveData<List<TvShow>>()
         tvShowsMutable.value = FakeDataDummy.generateDummyTvShows()

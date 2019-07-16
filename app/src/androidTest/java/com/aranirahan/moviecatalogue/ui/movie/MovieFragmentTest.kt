@@ -1,8 +1,7 @@
 package com.aranirahan.moviecatalogue.ui.movie
 
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -10,6 +9,7 @@ import androidx.test.rule.ActivityTestRule
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.RecyclerViewItemCountAssertion
 import com.aranirahan.moviecatalogue.testing.SingleFragmentActivity
+import com.aranirahan.moviecatalogue.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -25,11 +25,13 @@ class MovieFragmentTest {
 
     @Before
     fun setUp() {
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.espressoIdlingResource)
         activityRule.activity.setFragment(moviesFragment)
     }
 
     @After
     fun tearDown() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.espressoIdlingResource)
     }
 
     @Test

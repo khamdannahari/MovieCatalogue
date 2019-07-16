@@ -12,10 +12,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
-import com.aranirahan.moviecatalogue.goGone
 import com.aranirahan.moviecatalogue.ui.detailtvshow.DetailTvShowActivity
 import com.aranirahan.moviecatalogue.ui.detailtvshow.DetailTvShowActivity.Companion.ID_TV_SHOW
 import com.aranirahan.moviecatalogue.ui.main.MainViewModel
+import com.aranirahan.moviecatalogue.utils.goGone
 import com.aranirahan.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_tv_show.*
 import org.jetbrains.anko.startActivity

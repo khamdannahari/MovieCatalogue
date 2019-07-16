@@ -44,12 +44,6 @@ class DetailTvShowViewModelTest{
 
     @Test
     fun detailTvShow() {
-//        `when`(dataRepository.getTvShow(tvShow.id)).thenReturn(FakeDataDummy.getTvShowById(tvShow.id))
-//        assertEquals(tvShow.id, vmTvShow?.detailTvShow(1)?.id)
-//        assertEquals(tvShow.title, vmTvShow?.detailTvShow(1)?.title)
-//        assertEquals(tvShow.description, vmTvShow?.detailTvShow(1)?.description)
-//        assertEquals(tvShow.image, vmTvShow?.detailTvShow(1)?.image)
-//        assertEquals(tvShow.date, vmTvShow?.detailTvShow(1)?.date)
 
         val tvShowMutable = MutableLiveData<TvShow>()
         tvShowMutable.value = FakeDataDummy.getTvShowById(tvShow.id)

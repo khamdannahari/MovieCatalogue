@@ -1,15 +1,14 @@
 package com.aranirahan.moviecatalogue.ui.detailtvshow
 
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
-import com.aranirahan.moviecatalogue.goGone
-import com.aranirahan.moviecatalogue.ui.detailmovie.DetailMovieViewModel
+import com.aranirahan.moviecatalogue.utils.goGone
 import com.aranirahan.moviecatalogue.viewmodel.ViewModelFactory
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_movie.*

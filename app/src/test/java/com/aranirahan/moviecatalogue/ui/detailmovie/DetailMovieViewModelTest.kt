@@ -8,7 +8,7 @@ import com.aranirahan.moviecatalogue.data.source.DataRepository
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.ui.main.utils.FakeDataDummy
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -45,13 +45,6 @@ class DetailMovieViewModelTest{
 
     @Test
     fun detailMovie() {
-//        `when`(dataRepository.getMovie(movie.id)).thenReturn(FakeDataDummy.getMovieById(movie.id))
-//        assertEquals(movie.id, vmDetailMovie?.detailMovie(1)?.id)
-//        assertEquals(movie.title, vmDetailMovie?.detailMovie(1)?.title)
-//        assertEquals(movie.director, vmDetailMovie?.detailMovie(1)?.director)
-//        assertEquals(movie.description, vmDetailMovie?.detailMovie(1)?.description)
-//        assertEquals(movie.image, vmDetailMovie?.detailMovie(1)?.image)
-//        assertEquals(movie.date, vmDetailMovie?.detailMovie(1)?.date)
 
         val tvShowMutable = MutableLiveData<Movie>()
         tvShowMutable.value = FakeDataDummy.getMovieById(movie.id)
