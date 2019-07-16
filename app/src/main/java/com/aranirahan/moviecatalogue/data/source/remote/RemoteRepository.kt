@@ -5,7 +5,7 @@ import com.aranirahan.moviecatalogue.data.source.remote.response.MovieResponse
 import com.aranirahan.moviecatalogue.data.source.remote.response.TvShowResponse
 import com.aranirahan.moviecatalogue.utils.EspressoIdlingResource
 
-open class RemoteRepository constructor(private val jsonHelper: JsonHelper) {
+open class RemoteRepository private constructor(private val jsonHelper: JsonHelper) {
 
     fun getMovieResponseList(callback: GetMoviesCallback) {
         EspressoIdlingResource.increment()
