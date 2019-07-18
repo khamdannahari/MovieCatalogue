@@ -85,7 +85,7 @@ open class RemoteRepository private constructor(private val jsonHelper: JsonHelp
             if (INSTANCE == null) {
                 INSTANCE = RemoteRepository(helper)
             }
-            return INSTANCE!!
+            return INSTANCE as RemoteRepository
         }
     }
 }

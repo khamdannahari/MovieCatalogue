@@ -9,7 +9,7 @@ import androidx.test.rule.ActivityTestRule
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.RecyclerViewItemCountAssertion
 import com.aranirahan.moviecatalogue.testing.SingleFragmentActivity
-import com.aranirahan.moviecatalogue.utils.EspressoIdlingResource
+import com.aranirahan.moviecatalogue.utils.EspressoIdlingResource2
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -25,13 +25,13 @@ class MovieFragmentTest {
 
     @Before
     fun setUp() {
-        IdlingRegistry.getInstance().register(EspressoIdlingResource.espressoIdlingResource)
+        IdlingRegistry.getInstance().register(EspressoIdlingResource2.getEspressoIdlingResource())
         activityRule.activity.setFragment(moviesFragment)
     }
 
     @After
     fun tearDown() {
-        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.espressoIdlingResource)
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource2.getEspressoIdlingResource())
     }
 
     @Test
