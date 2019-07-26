@@ -65,7 +65,7 @@ class DataRepositoryTest {
     fun getMovieResponse() {
 
         doAnswer {
-            val callback = it.arguments[0] as RemoteRepository2.GetMovieCallback
+            val callback = it.arguments[1] as RemoteRepository2.GetMovieCallback
             movieResponse?.let { it1 -> callback.onMovieReceived(it1) }
             null
         }.`when`(remote).getMovieResponse(
@@ -73,16 +73,15 @@ class DataRepositoryTest {
             any(RemoteRepository2.GetMovieCallback::class.java)
         )
 
-//      Blm solved, sudah bertanya di diskusi kak
-//        val result = LiveDataTestUtil.getValue(dataRepository.getMovie(idMovieResponse))
-//        verify(
-//            remote,
-//            times(1)
-//        ).getMovieResponse(
-//            eq(idMovieResponse),
-//            any(RemoteRepository2.GetMovieCallback::class.java)
-//        )
-//        assertEquals(tvShowResponse?.id, 1)
+        val result = LiveDataTestUtil.getValue(dataRepository.getMovie(idMovieResponse))
+        verify(
+            remote,
+            times(1)
+        ).getMovieResponse(
+            eq(idMovieResponse),
+            any(RemoteRepository2.GetMovieCallback::class.java)
+        )
+        assertEquals(tvShowResponse?.id, 1)
     }
 
     @Test
@@ -109,7 +108,7 @@ class DataRepositoryTest {
     fun getTvShowResponse() {
 
         doAnswer {
-            val callback = it.arguments[0] as RemoteRepository2.GetTvShowCallback
+            val callback = it.arguments[1] as RemoteRepository2.GetTvShowCallback
             tvShowResponse?.let { it1 -> callback.onTvShowReceived(it1) }
             null
         }.`when`(remote).getTvShowResponse(
@@ -117,14 +116,13 @@ class DataRepositoryTest {
             any(RemoteRepository2.GetTvShowCallback::class.java)
         )
 
-//      Blm solved, sudah bertanya di diskusi kak
-//        val result = LiveDataTestUtil.getValue(dataRepository.getTvShow(idTvShowResponse))
-//
-//        verify(
-//            remote,
-//            times(1)
-//        ).getTvShowResponse(eq(idTvShowResponse), any(RemoteRepository2.GetTvShowCallback::class.java))
-//
-//        assertEquals(tvShowResponse?.id, result.id)
+        val result = LiveDataTestUtil.getValue(dataRepository.getTvShow(idTvShowResponse))
+
+        verify(
+            remote,
+            times(1)
+        ).getTvShowResponse(eq(idTvShowResponse), any(RemoteRepository2.GetTvShowCallback::class.java))
+
+        assertEquals(tvShowResponse?.id, result.id)
     }
 }
