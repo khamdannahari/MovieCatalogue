@@ -4,6 +4,7 @@ import android.os.Handler
 import com.aranirahan.moviecatalogue.data.source.remote.response.MovieResponse
 import com.aranirahan.moviecatalogue.data.source.remote.response.TvShowResponse
 import com.aranirahan.moviecatalogue.utils.EspressoIdlingResource
+import com.aranirahan.moviecatalogue.utils.JsonHelper
 
 open class RemoteRepository private constructor(private val jsonHelper: JsonHelper) {
 

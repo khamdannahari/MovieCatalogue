@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.ui.main.utils
+package com.aranirahan.moviecatalogue.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer

@@ -5,17 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import com.aranirahan.moviecatalogue.data.source.locale.LocaleRepository
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
+import com.aranirahan.moviecatalogue.data.source.remote.ApiResponse
 import com.aranirahan.moviecatalogue.data.source.remote.RemoteRepository2
 import com.aranirahan.moviecatalogue.data.source.remote.response.MovieResponse
 import com.aranirahan.moviecatalogue.data.source.remote.response.TvShowResponse
+import com.aranirahan.moviecatalogue.utils.AppExecutors
+import com.aranirahan.moviecatalogue.vo.Resource
 import java.util.*
 
 
-open class DataRepository private constructor(
+open class DataRepository constructor(
     private val localeRepository: LocaleRepository,
-    private val remoteRepository2: RemoteRepository2
+    private val remoteRepository2: RemoteRepository2,
+    val appExecutors: AppExecutors
 ) : DataSource {
-
 
     override fun getMovies(): LiveData<List<Movie>> {
         val moviesMutable = MutableLiveData<List<Movie>>()
@@ -34,6 +37,7 @@ open class DataRepository private constructor(
                     )
                     movies.add(movie)
                 }
+
                 moviesMutable.postValue(movies)
             }
 
@@ -50,7 +54,7 @@ open class DataRepository private constructor(
 
         remoteRepository2.getMovieResponse(idMovie, object : RemoteRepository2.GetMovieCallback {
             override fun onMovieReceived(movieResponse: MovieResponse) {
-               val movie = Movie(
+                val movie = Movie(
                     id = movieResponse.id,
                     title = movieResponse.title,
                     description = movieResponse.description,
@@ -86,6 +90,7 @@ open class DataRepository private constructor(
                     )
                     tvShows.add(movie)
                 }
+
                 moviesMutable.postValue(tvShows)
             }
 
@@ -102,7 +107,7 @@ open class DataRepository private constructor(
 
         remoteRepository2.getTvShowResponse(idTvShow, object : RemoteRepository2.GetTvShowCallback {
             override fun onTvShowReceived(tvShowResponse: TvShowResponse) {
-               val tvShow = TvShow(
+                val tvShow = TvShow(
                     id = tvShowResponse.id,
                     title = tvShowResponse.title,
                     description = tvShowResponse.description,
@@ -120,16 +125,132 @@ open class DataRepository private constructor(
         return tvShowMutable
     }
 
+    override fun getFavoriteMovies(): LiveData<Resource<List<Movie>>> {
+        return object : NetworkBoundResource<List<Movie>, List<MovieResponse>>(appExecutors) {
+
+            override fun loadFromDB(): LiveData<List<Movie>> {
+                return localeRepository.getFavoriteMovies()
+            }
+
+            override fun shouldFetch(data: List<Movie>): Boolean? {
+                return false
+            }
+
+            override fun createCall(): LiveData<ApiResponse<List<MovieResponse>>>? {
+                return null
+            }
+
+            override fun saveCallResult(data: List<MovieResponse>) {
+
+            }
+        }.asLiveData()
+    }
+
+    override fun getFavoriteMovie(idMovie: Int): LiveData<Resource<Movie>> {
+        return object : NetworkBoundResource<Movie, MovieResponse>(appExecutors) {
+
+            override fun loadFromDB(): LiveData<Movie> {
+                return localeRepository.getFavoriteMovie(idMovie)
+            }
+
+            override fun shouldFetch(data: Movie): Boolean? {
+                return false
+            }
+
+            override fun createCall(): LiveData<ApiResponse<MovieResponse>> ?{
+                return null
+            }
+
+            override fun saveCallResult(data: MovieResponse) {
+
+            }
+        }.asLiveData()
+    }
+
+    override fun getFavoriteTvShows(): LiveData<Resource<List<TvShow>>> {
+        return object : NetworkBoundResource<List<TvShow>, List<TvShowResponse>>(appExecutors) {
+
+            override fun loadFromDB(): LiveData<List<TvShow>> {
+                return localeRepository.getFavoriteTvShows()
+            }
+
+            override fun shouldFetch(data: List<TvShow>): Boolean? {
+                return false
+            }
+
+            override fun createCall(): LiveData<ApiResponse<List<TvShowResponse>>>? {
+                return null
+            }
+
+            override fun saveCallResult(data: List<TvShowResponse>) {
+
+            }
+        }.asLiveData()
+    }
+
+    override fun getFavoriteTvShow(idTvShow: Int): LiveData<Resource<TvShow>> {
+        return object : NetworkBoundResource<TvShow, TvShowResponse>(appExecutors) {
+
+            override fun loadFromDB(): LiveData<TvShow> {
+                return localeRepository.getFavoriteTvShow(idTvShow)
+            }
+
+            override fun shouldFetch(data: TvShow): Boolean? {
+                return false
+            }
+
+            override fun createCall(): LiveData<ApiResponse<TvShowResponse>>? {
+                return null
+            }
+
+            override fun saveCallResult(data: TvShowResponse) {
+
+            }
+        }.asLiveData()
+    }
+
+    override fun setIsFavoriteMovie(movie: Movie, isFavorite: Boolean) {
+        val runnable = { localeRepository.setIsFavoriteMovie(movie, isFavorite) }
+        appExecutors.diskIO().execute(runnable)
+    }
+
+    override fun setIsFavoriteTvShow(tvShow: TvShow, isFavorite: Boolean) {
+        val runnable = { localeRepository.setIsFavoriteTvShow(tvShow, isFavorite) }
+        appExecutors.diskIO().execute(runnable)
+    }
+
+    override fun insertFavoriteMovies(movies: List<Movie>) {
+        val runnable = {
+            if(localeRepository.getFavoriteMovies().value.isNullOrEmpty()){
+                localeRepository.insertFavoriteMovies(movies)
+            }
+        }
+        appExecutors.diskIO().execute(runnable)
+    }
+
+    override fun insertFavoriteTvShows(tvShows: List<TvShow>) {
+        val runnable = {
+            if(localeRepository.getFavoriteTvShows().value.isNullOrEmpty()){
+                localeRepository.insertFavoriteTvShows(tvShows)
+            }
+        }
+        appExecutors.diskIO().execute(runnable)
+    }
+
     companion object {
 
         @Volatile
         private var INSTANCE: DataRepository? = null
 
-        fun getInstance(localeRepository: LocaleRepository, remoteData: RemoteRepository2): DataRepository? {
+        fun getInstance(
+            localeRepository: LocaleRepository,
+            remoteData: RemoteRepository2,
+            appExecutors: AppExecutors
+        ): DataRepository? {
             if (INSTANCE == null) {
                 synchronized(DataRepository::class.java) {
                     if (INSTANCE == null) {
-                        INSTANCE = DataRepository(localeRepository, remoteData)
+                        INSTANCE = DataRepository(localeRepository, remoteData, appExecutors)
                     }
                 }
             }

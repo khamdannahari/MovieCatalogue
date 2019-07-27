@@ -2,4 +2,9 @@
     <string name="app_name">Movie Catalogue</string>
     <string name="movies">Movies</string>
     <string name="tv_show">TV Show</string>
+    <string name="favorite_movies">Favorite Movies</string>
+    <string name="favorite">Favorite</string>
+    <string name="no_data">No data</string>
+    <string name="something_wrong">Something wrong</string>
+    <string name="favorite_tv_show">Favorite Tv Show</string>
 </resources>

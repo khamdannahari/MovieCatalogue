@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -18,13 +19,12 @@ import com.aranirahan.moviecatalogue.ui.main.MainViewModel
 import com.aranirahan.moviecatalogue.utils.goGone
 import com.aranirahan.moviecatalogue.utils.goVisible
 import com.aranirahan.moviecatalogue.viewmodel.ViewModelFactory
-import com.aranirahan.moviecatalogue.vo.Status
 import com.aranirahan.moviecatalogue.vo.Status.*
-import kotlinx.android.synthetic.main.fragment_movie.*
+import kotlinx.android.synthetic.main.fragment_favorite_movie.*
 import org.jetbrains.anko.startActivity
 
 
-class MovieFragment : Fragment() {
+class FavoriteMovieFragment : Fragment() {
 
     private var data = listOf<Movie>()
     private val vmMain by lazy { activity?.let { obtainViewModel(it) } }
@@ -34,7 +34,7 @@ class MovieFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_movie, container, false)
+        return inflater.inflate(R.layout.fragment_favorite_movie, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -44,36 +44,32 @@ class MovieFragment : Fragment() {
             context?.startActivity<DetailMovieActivity>(ID_MOVIE to idMovie)
         }
 
-        vmMain?.movies?.observe(viewLifecycleOwner, Observer {
-            data = it
-            adapterMovie.submitList(data)
+        vmMain?.favoriteMovies?.observe(viewLifecycleOwner, Observer { response ->
 
-            getFavoriteMovies()
-        })
+            if (response != null) {
+                when (response.status) {
+                    LOADING -> progress_circular.goVisible()
+                    SUCCESS -> {
+                        progress_circular.goGone()
+                        data = response.data ?: emptyList()
+                        adapterMovie.submitList(data)
 
-        rv_movie.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = adapterMovie
-        }
-    }
-
-    private fun getFavoriteMovies() {
-        vmMain?.favoriteMovies?.observe(viewLifecycleOwner, Observer {
-
-            when (it.status) {
-                SUCCESS -> {
-                    progress_circular.goGone()
-                    if (it.data.isNullOrEmpty()) {
-                        vmMain?.insertFavoriteMovies(data)
+                        if(data.isNullOrEmpty()){
+                            tv_no_data.goVisible()
+                        }
                     }
-                }
-                ERROR -> {
-                    progress_circular.goGone()
-                }
-                LOADING -> {
+                    ERROR -> {
+                        progress_circular.goGone()
+                        Toast.makeText(context, getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         })
+
+        rv_favorite_movie.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = adapterMovie
+        }
     }
 
     private fun obtainViewModel(activity: FragmentActivity): MainViewModel {

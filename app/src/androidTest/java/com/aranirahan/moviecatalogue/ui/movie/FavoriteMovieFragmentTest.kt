@@ -16,17 +16,17 @@ import org.junit.Rule
 import org.junit.Test
 
 
-class MovieFragmentTest {
+class FavoriteMovieFragmentTest {
 
     @Rule
     @JvmField
     val activityRule: ActivityTestRule<SingleFragmentActivity> = ActivityTestRule(SingleFragmentActivity::class.java)
-    private val moviesFragment = MovieFragment()
+    private val favoriteMovieFragment = FavoriteMovieFragment()
 
     @Before
     fun setUp() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource2.getEspressoIdlingResource())
-        activityRule.activity.setFragment(moviesFragment)
+        activityRule.activity.setFragment(favoriteMovieFragment)
     }
 
     @After
@@ -36,10 +36,10 @@ class MovieFragmentTest {
 
     @Test
     fun getData() {
-        onView(withId(R.id.rv_movie)).check(matches(ViewMatchers.isDisplayed()))
-        onView(withId(R.id.rv_movie)).check(
+        onView(withId(R.id.rv_favorite_movie)).check(matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.rv_favorite_movie)).check(
             RecyclerViewItemCountAssertion(
-                16
+                0
             )
         )
     }

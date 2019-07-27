@@ -6,12 +6,11 @@ import androidx.lifecycle.Observer
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.data.source.DataRepository
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
-import com.aranirahan.moviecatalogue.ui.main.utils.FakeDataDummy
-import org.junit.After
+import com.aranirahan.moviecatalogue.utils.FakeDataDummy
+import com.aranirahan.moviecatalogue.utils.LiveDataTestUtil
+import com.aranirahan.moviecatalogue.vo.Resource
+import org.junit.*
 import org.junit.Assert.assertEquals
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
 import org.mockito.Mockito.*
 
 
@@ -57,5 +56,20 @@ class DetailMovieViewModelTest{
         assertEquals(movie.description, vmDetailMovie?.detailMovie(movie.id)?.value?.description)
         assertEquals(movie.image, vmDetailMovie?.detailMovie(movie.id)?.value?.image)
         assertEquals(movie.date, vmDetailMovie?.detailMovie(movie.id)?.value?.date)
+    }
+
+    @Test
+    fun favoriteMovie(){
+        val movie = MutableLiveData<Resource<Movie>>()
+        movie.value = Resource.success(FakeDataDummy.getMovieById(this.movie.id))
+
+        `when`(dataRepository.getFavoriteMovie(this.movie.id)).thenReturn(movie)
+
+        val observer = mock(Observer::class.java)
+
+        vmDetailMovie?.favoriteMovie?.observeForever(observer as Observer<Resource<Movie>>)
+
+        val result = LiveDataTestUtil.getValue(dataRepository.getFavoriteMovie(this.movie.id))
+        Assert.assertNotNull(result)
     }
 }

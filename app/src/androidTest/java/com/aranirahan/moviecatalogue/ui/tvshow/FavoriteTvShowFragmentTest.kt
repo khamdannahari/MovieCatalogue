@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.ui.movie
+package com.aranirahan.moviecatalogue.ui.tvshow
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
@@ -16,17 +16,17 @@ import org.junit.Rule
 import org.junit.Test
 
 
-class MovieFragmentTest {
+class FavoriteTvShowFragmentTest {
 
     @Rule
     @JvmField
     val activityRule: ActivityTestRule<SingleFragmentActivity> = ActivityTestRule(SingleFragmentActivity::class.java)
-    private val moviesFragment = MovieFragment()
+    private val favoriteTvShowFragment = FavoriteTvShowFragment()
 
     @Before
     fun setUp() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource2.getEspressoIdlingResource())
-        activityRule.activity.setFragment(moviesFragment)
+        activityRule.activity.setFragment(favoriteTvShowFragment)
     }
 
     @After
@@ -36,10 +36,10 @@ class MovieFragmentTest {
 
     @Test
     fun getData() {
-        onView(withId(R.id.rv_movie)).check(matches(ViewMatchers.isDisplayed()))
-        onView(withId(R.id.rv_movie)).check(
+        onView(withId(R.id.rv_favorite_tv_show)).check(matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.rv_favorite_tv_show)).check(
             RecyclerViewItemCountAssertion(
-                16
+                0
             )
         )
     }

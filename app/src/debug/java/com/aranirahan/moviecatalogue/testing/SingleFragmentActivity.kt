@@ -28,7 +28,7 @@ class SingleFragmentActivity : AppCompatActivity() {
         supportFragmentManager
             .beginTransaction()
             .add(R.id.container, fragment, "TEST")
-            .commit()
+            .commitAllowingStateLoss()
     }
 
     fun replaceFragment(fragment: Fragment) {

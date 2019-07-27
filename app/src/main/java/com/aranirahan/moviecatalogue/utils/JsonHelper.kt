@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.data.source.remote
+package com.aranirahan.moviecatalogue.utils
 
 
 import android.app.Application

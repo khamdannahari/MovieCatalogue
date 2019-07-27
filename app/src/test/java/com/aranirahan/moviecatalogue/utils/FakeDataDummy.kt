@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue.ui.main.utils
+package com.aranirahan.moviecatalogue.utils
 
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie

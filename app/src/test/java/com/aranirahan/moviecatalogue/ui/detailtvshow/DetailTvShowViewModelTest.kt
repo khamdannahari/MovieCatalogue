@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.data.source.DataRepository
+import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
-import com.aranirahan.moviecatalogue.ui.main.utils.FakeDataDummy
+import com.aranirahan.moviecatalogue.utils.FakeDataDummy
+import com.aranirahan.moviecatalogue.utils.LiveDataTestUtil
+import com.aranirahan.moviecatalogue.vo.Resource
 import junit.framework.Assert.assertEquals
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.mockito.Mockito.*
 
 
@@ -56,5 +56,20 @@ class DetailTvShowViewModelTest{
         assertEquals(tvShow.description, vmTvShow?.detailTvShow(tvShow.id)?.value?.description)
         assertEquals(tvShow.image, vmTvShow?.detailTvShow(tvShow.id)?.value?.image)
         assertEquals(tvShow.date, vmTvShow?.detailTvShow(tvShow.id)?.value?.date)
+    }
+
+    @Test
+    fun favoriteMovie(){
+        val tvShow = MutableLiveData<Resource<TvShow>>()
+        tvShow.value = Resource.success(FakeDataDummy.getTvShowById(this.tvShow.id))
+
+        `when`(dataRepository.getFavoriteTvShow(this.tvShow.id)).thenReturn(tvShow)
+
+        val observer = mock(Observer::class.java)
+
+        vmTvShow?.favoriteTvShow?.observeForever(observer as Observer<Resource<TvShow>>)
+
+        val result = LiveDataTestUtil.getValue(dataRepository.getFavoriteTvShow(this.tvShow.id))
+        Assert.assertNotNull(result)
     }
 }

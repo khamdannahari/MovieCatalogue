@@ -1,4 +1,4 @@
-package com.aranirahan.moviecatalogue
+package com.aranirahan.moviecatalogue.utils
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

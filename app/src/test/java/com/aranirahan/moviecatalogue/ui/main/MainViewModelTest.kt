@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import com.aranirahan.moviecatalogue.data.source.DataRepository
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
-import com.aranirahan.moviecatalogue.ui.main.utils.FakeDataDummy
+import com.aranirahan.moviecatalogue.utils.FakeDataDummy
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

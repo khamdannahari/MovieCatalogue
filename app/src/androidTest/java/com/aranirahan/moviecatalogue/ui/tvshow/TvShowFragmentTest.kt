@@ -7,7 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import com.aranirahan.moviecatalogue.R
-import com.aranirahan.moviecatalogue.RecyclerViewItemCountAssertion
+import com.aranirahan.moviecatalogue.utils.RecyclerViewItemCountAssertion
 import com.aranirahan.moviecatalogue.testing.SingleFragmentActivity
 import com.aranirahan.moviecatalogue.utils.EspressoIdlingResource2
 import org.junit.After
@@ -35,6 +35,10 @@ class TvShowFragmentTest{
     @Test
     fun getData() {
         onView(withId(R.id.rv_tv_show)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(withId(R.id.rv_tv_show)).check(RecyclerViewItemCountAssertion(16))
+        onView(withId(R.id.rv_tv_show)).check(
+            RecyclerViewItemCountAssertion(
+                16
+            )
+        )
     }
 }
