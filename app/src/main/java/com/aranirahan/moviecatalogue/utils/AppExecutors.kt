@@ -17,8 +17,7 @@ constructor(
     constructor() : this(
         DiskIOThreadExecutor(), Executors.newFixedThreadPool(THREAD_COUNT),
         MainThreadExecutor()
-    ) {
-    }
+    )
 
     fun diskIO(): Executor {
         return diskIO

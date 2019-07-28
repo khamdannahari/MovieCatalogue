@@ -2,6 +2,7 @@ package com.aranirahan.moviecatalogue.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.PagedList
 import com.aranirahan.moviecatalogue.data.source.locale.LocaleRepository
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
@@ -12,6 +13,9 @@ import com.aranirahan.moviecatalogue.data.source.remote.response.TvShowResponse
 import com.aranirahan.moviecatalogue.utils.AppExecutors
 import com.aranirahan.moviecatalogue.vo.Resource
 import java.util.*
+import androidx.paging.LivePagedListBuilder
+
+
 
 
 open class DataRepository constructor(
@@ -204,6 +208,54 @@ open class DataRepository constructor(
             }
 
             override fun saveCallResult(data: TvShowResponse) {
+
+            }
+        }.asLiveData()
+    }
+
+    override fun getFavoriteMovieAsPaged(): LiveData<Resource<PagedList<Movie>>> {
+        return object : NetworkBoundResource<PagedList<Movie>, List<MovieResponse>>(appExecutors) {
+
+            override fun loadFromDB(): LiveData<PagedList<Movie>> {
+                return LivePagedListBuilder(
+                    localeRepository.getFavoriteMovieAsPaged(), /* page size */
+                    20
+                ).build()
+            }
+
+            override fun shouldFetch(data: PagedList<Movie>): Boolean? {
+                return false
+            }
+
+            override fun createCall(): LiveData<ApiResponse<List<MovieResponse>>>? {
+                return null
+            }
+
+            override fun saveCallResult(data: List<MovieResponse>) {
+
+            }
+        }.asLiveData()
+    }
+
+    override fun getFavoriteTvShowAsPaged(): LiveData<Resource<PagedList<TvShow>>> {
+        return object : NetworkBoundResource<PagedList<TvShow>, List<MovieResponse>>(appExecutors) {
+
+            override fun loadFromDB(): LiveData<PagedList<TvShow>> {
+                return LivePagedListBuilder(
+                    localeRepository.getFavoriteTvShowAsPaged(), /* page size */
+                    20
+                ).build()
+            }
+
+            override fun shouldFetch(data: PagedList<TvShow>): Boolean? {
+                return false
+            }
+
+            override fun createCall(): LiveData<ApiResponse<List<MovieResponse>>>? {
+                return null
+            }
+
+            override fun saveCallResult(data: List<MovieResponse>) {
 
             }
         }.asLiveData()

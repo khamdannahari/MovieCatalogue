@@ -37,10 +37,6 @@ class FavoriteTvShowFragmentTest {
     @Test
     fun getData() {
         onView(withId(R.id.rv_favorite_tv_show)).check(matches(ViewMatchers.isDisplayed()))
-        onView(withId(R.id.rv_favorite_tv_show)).check(
-            RecyclerViewItemCountAssertion(
-                0
-            )
-        )
+        onView(withId(R.id.rv_favorite_tv_show)).check(RecyclerViewItemCountAssertion(1))
     }
 }

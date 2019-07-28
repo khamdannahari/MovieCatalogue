@@ -38,9 +38,7 @@ class FavoriteMovieFragmentTest {
     fun getData() {
         onView(withId(R.id.rv_favorite_movie)).check(matches(ViewMatchers.isDisplayed()))
         onView(withId(R.id.rv_favorite_movie)).check(
-            RecyclerViewItemCountAssertion(
-                0
-            )
+            RecyclerViewItemCountAssertion(1)
         )
     }
 }

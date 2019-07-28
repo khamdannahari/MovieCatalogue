@@ -1,6 +1,7 @@
 package com.aranirahan.moviecatalogue.data.source.locale
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 import com.aranirahan.moviecatalogue.data.source.locale.room.DataDao
@@ -32,6 +33,14 @@ open class LocaleRepository constructor(private val mDataDao: DataDao) {
     fun setIsFavoriteTvShow(tvShow: TvShow, isFavorite:Boolean){
         tvShow.isFavorite = isFavorite
         mDataDao.updateFavoriteTvShow(tvShow)
+    }
+
+    fun getFavoriteMovieAsPaged(): DataSource.Factory<Int, Movie> {
+        return mDataDao.getFavoriteMovieAsPaged()
+    }
+
+    fun getFavoriteTvShowAsPaged(): DataSource.Factory<Int, TvShow> {
+        return mDataDao.getFavoriteTvShowAsPaged()
     }
 
     companion object {

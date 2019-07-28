@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aranirahan.TvShowcatalogue.ui.tvshow.FavoriteTvShowAdapter
 import com.aranirahan.moviecatalogue.R
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 import com.aranirahan.moviecatalogue.ui.detailmovie.DetailMovieActivity
@@ -28,7 +29,6 @@ import org.jetbrains.anko.startActivity
 
 class FavoriteTvShowFragment : Fragment() {
 
-    private var data = listOf<TvShow>()
     private val vmMain by lazy { activity?.let { obtainViewModel(it) } }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,21 +38,18 @@ class FavoriteTvShowFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapterTvShow = TvShowAdapter { idTvShow ->
-            context?.startActivity<DetailTvShowActivity>(ID_TV_SHOW to idTvShow)
-        }
+        val adapterTvShow = FavoriteTvShowAdapter()
 
-        vmMain?.favoriteTvShows?.observe(viewLifecycleOwner, Observer { response ->
+        vmMain?.favoriteTvShowPaged?.observe(viewLifecycleOwner, Observer { response ->
 
             if (response != null) {
                 when (response.status) {
                     Status.LOADING -> progress_circular.goVisible()
                     Status.SUCCESS -> {
                         progress_circular.goGone()
-                        data = response.data ?: emptyList()
-                        adapterTvShow.submitList(data)
+                        adapterTvShow.submitList(response.data)
 
-                        if(data.isNullOrEmpty()){
+                        if(response.data.isNullOrEmpty()){
                             tv_no_data.goVisible()
                         }
                     }
@@ -73,7 +70,6 @@ class FavoriteTvShowFragment : Fragment() {
     }
 
     private fun obtainViewModel(activity: FragmentActivity): MainViewModel {
-        // Use a Factory to inject dependencies into the ViewModel
         val factory = ViewModelFactory.getInstance(activity.application)
         return ViewModelProviders.of(activity, factory).get(MainViewModel::class.java)
     }

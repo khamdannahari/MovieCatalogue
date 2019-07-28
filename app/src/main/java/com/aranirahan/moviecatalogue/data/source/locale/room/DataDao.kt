@@ -2,6 +2,7 @@ package com.aranirahan.moviecatalogue.data.source.locale.room
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
@@ -48,4 +49,10 @@ interface DataDao {
     @WorkerThread
     @Query("SELECT * FROM tvShow where isFavorite = 1")
     fun getFavoriteTvShows(): LiveData<List<TvShow>>
+
+    @Query("SELECT * FROM movie where isFavorite = 1")
+    fun getFavoriteMovieAsPaged(): DataSource.Factory<Int, Movie>
+
+    @Query("SELECT * FROM tvshow where isFavorite = 1")
+    fun getFavoriteTvShowAsPaged(): DataSource.Factory<Int, TvShow>
 }

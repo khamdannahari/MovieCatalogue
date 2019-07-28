@@ -12,21 +12,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aranirahan.moviecatalogue.R
-import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
-import com.aranirahan.moviecatalogue.ui.detailmovie.DetailMovieActivity
-import com.aranirahan.moviecatalogue.ui.detailmovie.DetailMovieActivity.Companion.ID_MOVIE
 import com.aranirahan.moviecatalogue.ui.main.MainViewModel
 import com.aranirahan.moviecatalogue.utils.goGone
 import com.aranirahan.moviecatalogue.utils.goVisible
 import com.aranirahan.moviecatalogue.viewmodel.ViewModelFactory
 import com.aranirahan.moviecatalogue.vo.Status.*
 import kotlinx.android.synthetic.main.fragment_favorite_movie.*
-import org.jetbrains.anko.startActivity
 
 
 class FavoriteMovieFragment : Fragment() {
 
-    private var data = listOf<Movie>()
     private val vmMain by lazy { activity?.let { obtainViewModel(it) } }
 
     override fun onCreateView(
@@ -40,21 +35,19 @@ class FavoriteMovieFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapterMovie = MovieAdapter { idMovie ->
-            context?.startActivity<DetailMovieActivity>(ID_MOVIE to idMovie)
-        }
+        val adapterMovie = FavoriteMovieAdapter()
 
-        vmMain?.favoriteMovies?.observe(viewLifecycleOwner, Observer { response ->
+        vmMain?.favoriteMoviesPaged?.observe(viewLifecycleOwner, Observer { response ->
 
             if (response != null) {
                 when (response.status) {
                     LOADING -> progress_circular.goVisible()
                     SUCCESS -> {
                         progress_circular.goGone()
-                        data = response.data ?: emptyList()
-                        adapterMovie.submitList(data)
+                        adapterMovie.submitList(response.data)
+                        adapterMovie.notifyDataSetChanged()
 
-                        if(data.isNullOrEmpty()){
+                        if(response.data.isNullOrEmpty()){
                             tv_no_data.goVisible()
                         }
                     }
@@ -73,7 +66,6 @@ class FavoriteMovieFragment : Fragment() {
     }
 
     private fun obtainViewModel(activity: FragmentActivity): MainViewModel {
-        // Use a Factory to inject dependencies into the ViewModel
         val factory = ViewModelFactory.getInstance(activity.application)
         return ViewModelProviders.of(activity, factory).get(MainViewModel::class.java)
     }

@@ -2,6 +2,7 @@ package com.aranirahan.moviecatalogue.data.source
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.DataSource
 import com.aranirahan.moviecatalogue.data.source.locale.LocaleRepository
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
@@ -135,7 +136,7 @@ class DataRepositoryTest {
 
     @Test
     fun getFavoriteMovies(){
-        val movies = MutableLiveData<List<Movie>>()
+        /*val movies = MutableLiveData<List<Movie>>()
         movies.value = FakeDataDummy.generateDummyMovies()
 
         `when`(local.getFavoriteMovies()).thenReturn(movies)
@@ -143,7 +144,15 @@ class DataRepositoryTest {
         val result = LiveDataTestUtil.getValue(dataRepository.getFavoriteMovies())
 
         verify(local).getFavoriteMovies()
-        assertNotNull(result)
+        assertNotNull(result)*/
+
+        val dataSourceFactory = mock(DataSource.Factory::class.java)
+
+        `when`(local.getFavoriteMovieAsPaged()).thenReturn(dataSourceFactory as DataSource.Factory<Int, Movie>)
+
+        dataRepository.getFavoriteMovieAsPaged()
+
+        verify(local).getFavoriteMovieAsPaged()
     }
 
     @Test

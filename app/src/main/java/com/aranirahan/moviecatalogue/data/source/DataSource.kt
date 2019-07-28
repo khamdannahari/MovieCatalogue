@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 import com.aranirahan.moviecatalogue.vo.Resource
+import androidx.paging.PagedList
+
+
 
 
 interface DataSource {
@@ -31,4 +34,8 @@ interface DataSource {
     fun insertFavoriteMovies(movies: List<Movie>)
 
     fun insertFavoriteTvShows(tvShows: List<TvShow>)
+
+    fun getFavoriteMovieAsPaged(): LiveData<Resource<PagedList<Movie>>>
+
+    fun getFavoriteTvShowAsPaged(): LiveData<Resource<PagedList<TvShow>>>
 }
