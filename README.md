@@ -19,7 +19,7 @@
 - Pagination<br>
 - Unit testing<br>
 - Instrument testing<br>
-- All lessons on [Dicoding Academy - Jetpack Class](https://www.dicoding.com/academies/129/tutorials)<br><br>
+- Etc. Let's see on [Dicoding Academy - Jetpack Class](https://www.dicoding.com/academies/129/tutorials)<br><br>
 
 Use api [thesportsDB.com](thesportsDB.com)<br><br>
 
