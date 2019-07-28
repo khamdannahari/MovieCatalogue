@@ -8,7 +8,7 @@ import com.aranirahan.moviecatalogue.data.source.locale.LocaleRepository
 import com.aranirahan.moviecatalogue.data.source.locale.entity.Movie
 import com.aranirahan.moviecatalogue.data.source.locale.entity.TvShow
 import com.aranirahan.moviecatalogue.data.source.remote.ApiResponse
-import com.aranirahan.moviecatalogue.data.source.remote.RemoteRepository2
+import com.aranirahan.moviecatalogue.data.source.remote.RemoteRepository
 import com.aranirahan.moviecatalogue.data.source.remote.response.MovieResponse
 import com.aranirahan.moviecatalogue.data.source.remote.response.TvShowResponse
 import com.aranirahan.moviecatalogue.utils.AppExecutors
@@ -18,14 +18,14 @@ import java.util.*
 
 open class FakeDataRepository (
     private val localeRepository: LocaleRepository,
-    private val remoteRepository2: RemoteRepository2,
+    private val remoteRepository: RemoteRepository,
     val appExecutors: AppExecutors
 ) : DataSource {
 
     override fun getMovies(): LiveData<List<Movie>> {
         val moviesMutable = MutableLiveData<List<Movie>>()
 
-        remoteRepository2.getMovieResponseList(object : RemoteRepository2.GetMoviesCallback {
+        remoteRepository.getMovieResponseList(object : RemoteRepository.GetMoviesCallback {
             override fun onMoviesReceived(movieResponseList: List<MovieResponse>) {
                 val movies = ArrayList<Movie>()
                 for (i in movieResponseList.indices) {
@@ -54,7 +54,7 @@ open class FakeDataRepository (
     override fun getMovie(idMovie: Int): LiveData<Movie> {
         val movieMutable = MutableLiveData<Movie>()
 
-        remoteRepository2.getMovieResponse(idMovie, object : RemoteRepository2.GetMovieCallback {
+        remoteRepository.getMovieResponse(idMovie, object : RemoteRepository.GetMovieCallback {
             override fun onMovieReceived(movieResponse: MovieResponse) {
                 val movie = Movie(
                     id = movieResponse.id,
@@ -78,7 +78,7 @@ open class FakeDataRepository (
     override fun getTvShows(): LiveData<List<TvShow>> {
         val moviesMutable = MutableLiveData<List<TvShow>>()
 
-        remoteRepository2.getTvShowResponseList(object : RemoteRepository2.GetTvShowsCallback {
+        remoteRepository.getTvShowResponseList(object : RemoteRepository.GetTvShowsCallback {
             override fun onTvShowsReceived(tvShowResponseList: List<TvShowResponse>) {
                 val tvShows = ArrayList<TvShow>()
                 for (i in tvShowResponseList.indices) {
@@ -107,7 +107,7 @@ open class FakeDataRepository (
     override fun getTvShow(idTvShow: Int): LiveData<TvShow> {
         val tvShowMutable = MutableLiveData<TvShow>()
 
-        remoteRepository2.getTvShowResponse(idTvShow, object : RemoteRepository2.GetTvShowCallback {
+        remoteRepository.getTvShowResponse(idTvShow, object : RemoteRepository.GetTvShowCallback {
             override fun onTvShowReceived(tvShowResponse: TvShowResponse) {
                 val tvShow = TvShow(
                     id = tvShowResponse.id,
@@ -294,7 +294,7 @@ open class FakeDataRepository (
 
         fun getInstance(
             localeRepository: LocaleRepository,
-            remoteData: RemoteRepository2,
+            remoteData: RemoteRepository,
             appExecutors: AppExecutors
         ): FakeDataRepository? {
             if (INSTANCE == null) {

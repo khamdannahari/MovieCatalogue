@@ -3,7 +3,7 @@ package com.aranirahan.moviecatalogue.utils;
 import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.idling.CountingIdlingResource;
 
-public class EspressoIdlingResource2 {
+public class EspressoIdlingResource {
     private static final String RESOURCE = "GLOBAL";
     private static CountingIdlingResource espressoTestIdlingResource = new CountingIdlingResource(RESOURCE);
 
