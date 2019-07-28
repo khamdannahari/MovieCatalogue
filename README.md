@@ -10,7 +10,7 @@
 - Pagination<br>
 - Unit testing<br>
 - Instrument testing<br>
-- Etc. Let's see on [Dicoding Academy - Jetpack Class](https://www.dicoding.com/academies/129/tutorials)<br><br>
+- Etc. Let's see all on [Dicoding Academy - Jetpack Class](https://www.dicoding.com/academies/129/tutorials)<br><br>
 
 **Features :**<br>
 - List movie <br>
