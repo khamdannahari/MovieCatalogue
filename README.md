@@ -1,6 +1,6 @@
 # MovieCatalogue
 
-**Learning Materials :**<br>
+**Lesson Materials :**<br>
 - MVVM pattern<br>
 - Architcture component<br>
 - Injection<br>
@@ -10,7 +10,7 @@
 - Pagination<br>
 - Unit testing<br>
 - Instrument testing<br>
-- Etc. Let's see all on [Dicoding Academy - Jetpack Class](https://www.dicoding.com/academies/129/tutorials)<br><br>
+- Etc. Let's see all lesson on [Dicoding Academy - Jetpack Class](https://www.dicoding.com/academies/129/tutorials)<br><br>
 
 **Features :**<br>
 - List movie <br>
