@@ -22,8 +22,6 @@
 - Detail favorite movie<br>
 - Detail favorite tv show<br><br>
 
-Use api [thesportsDB.com](thesportsDB.com)<br><br>
-
 **Penampakan :**<br><br>
 <img width="300" alt="ss1" src="https://user-images.githubusercontent.com/32474003/62001658-52a29500-b11f-11e9-95a4-891127c3e882.png">
 <img width="300" alt="ss1" src="https://user-images.githubusercontent.com/32474003/62001659-533b2b80-b11f-11e9-8e96-cb7a07f327e5.png">
