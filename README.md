@@ -1,13 +1,4 @@
 # MovieCatalogue
-**Features :**<br>
-- List movie <br>
-- List tv show<br>
-- List favorite movie<br>
-- List favorite tv show<br>
-- Detail movie<br>
-- Detail tv show<br>
-- Detail favorite movie<br>
-- Detail favorite tv show<br><br>
 
 **Learning Materials :**<br>
 - MVVM pattern<br>
@@ -20,6 +11,16 @@
 - Unit testing<br>
 - Instrument testing<br>
 - Etc. Let's see on [Dicoding Academy - Jetpack Class](https://www.dicoding.com/academies/129/tutorials)<br><br>
+
+**Features :**<br>
+- List movie <br>
+- List tv show<br>
+- List favorite movie<br>
+- List favorite tv show<br>
+- Detail movie<br>
+- Detail tv show<br>
+- Detail favorite movie<br>
+- Detail favorite tv show<br><br>
 
 Use api [thesportsDB.com](thesportsDB.com)<br><br>
 
