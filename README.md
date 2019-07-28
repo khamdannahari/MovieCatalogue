@@ -5,7 +5,7 @@
 - Architcture component<br>
 - Injection<br>
 - Live data<br>
-- View Model<br>
+- View model<br>
 - Room<br>
 - Pagination<br>
 - Unit testing<br>
